@@ -6,7 +6,7 @@ def total(num1, num2):
 
 
 class SimpleServer(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def do_GET(self):  # pylint: disable=invalid-name
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -25,6 +25,10 @@ class SimpleServer(BaseHTTPRequestHandler):
                 "utf-8",
             )
         )
+
+        val = {
+            "asd": 1,             "asd": 2
+        }
 
 
 if __name__ == "__main__":
