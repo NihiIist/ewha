@@ -22,7 +22,7 @@ jobs:
 
       # 테스트코드 돌리기
       - name: run pytest
-        run: docker run --rm ghcr.io/itargowoosung/ewha-server:production pip install pytest && python -m pytest
+        run: docker ru --rm ghcr.io/itargowoosung/ewha-server:production pip install pytest && python -m pytest
 
       # github 로그인
       - name: login
