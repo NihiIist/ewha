@@ -20,6 +20,10 @@ jobs:
       - name: build the docker image
         run: docker build . -t ghcr.io/itargowoosung/ewha-server:production
 
+      # 테스트코드 돌리기
+      - name: run pytest
+        run: docker run --rm ghcr.io/itargowoosung/ewha-server:production pytest
+
       # github 로그인
       - name: login
         uses: docker/login-action@v1
