@@ -1,25 +1,25 @@
 name: production branch actions
 
-on: 
+on:
   push:
     branches:
-      - 'production'
+      - "production"
 jobs:
   build:
     name: build, test, deploy
     runs-on: ubuntu-latest
-    
+
     steps:
       # 소스를 가져오기
-      - name: checkout staging 
+      - name: checkout staging
         uses: actions/checkout@v2
         with:
-          ref: 'production' 
-      
+          ref: "production"
+
       # docker 이미지 빌드
       - name: build the docker image
         run: docker build . -t ghcr.io/itargowoosung/ewha-server:production
-      
+
       # github 로그인
       - name: login
         uses: docker/login-action@v1
@@ -31,26 +31,5 @@ jobs:
       # push image to github pakage
       - name: push image
         run: docker push ghcr.io/itargowoosung/ewha-server:production
-      
+
       # pull & test & service
-      """
-      - name: pull & test & service
-        uses: appleboy/ssh-action@v0.1.1
-        with:
-            host: ${{ secrets.EC2_STAGING_HOST }}
-            username: ${{ secrets.EC2_STAGING_USERNAME }}
-            key: ${{ secrets.EC2_STAGING_PEM }}
-            script: >-
-              cd /home/ubuntu/bananatok-backend &&
-              git checkout staging &&
-              git reset --hard &&
-              git pull --rebase origin staging &&
-              cp docker-compose.staging.yml /home/ubuntu/app/ &&
-              cp ./config/nginx.conf /home/ubuntu/app/settings/ &&
-              cp ./config/nginx.channel.conf /home/ubuntu/app/settings/ &&
-              cp ./config/supervisord.conf /home/ubuntu/app/settings/ &&
-              cd /home/ubuntu/app &&
-              echo ${{ secrets.TEMP_PAM }} | sudo docker login ghcr.io --username hoangwj --password-stdin &&
-              sudo docker pull ghcr.io/hoangwj/bananatok-backend:staging &&
-              sudo docker stack deploy --with-registry-auth --prune -c docker-compose.staging.yml bananatok-backend
-      """
