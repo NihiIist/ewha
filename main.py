@@ -1,12 +1,25 @@
+"""
+간단한 서버 코드입니다.
+"""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 def total(num1, num2):
+    """
+    num1과 num2 더하기
+    """
     return num1 + num2
 
 
 class SimpleServer(BaseHTTPRequestHandler):
+    """
+    Server class
+    """
+
     def do_GET(self):  # pylint: disable=invalid-name
+        """
+        GET 요청 처리 함수입니다.
+        """
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -25,10 +38,6 @@ class SimpleServer(BaseHTTPRequestHandler):
                 "utf-8",
             )
         )
-
-        val = {
-            "asd": 1,              "asd": 2
-        }
 
 
 if __name__ == "__main__":
