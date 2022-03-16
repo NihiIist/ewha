@@ -46,5 +46,5 @@ jobs:
           script: >-
             echo ${{ secrets.ACCESS_TOKEN }} | sudo docker login ghcr.io --username itargowoosung --password-stdin &&
             sudo docker pull ghcr.io/itargowoosung/ewha-server:production &&
-            sudo docker stop ghcr.io/itargowoosung/ewha-server:production &&
-            sudo docker run -d -p '8080':'8080' ghcr.io/itargowoosung/ewha-server:production
+            sudo docker stop ewha-server-itargowoosung &&
+            sudo docker run -d -p '8080':'8080' --name ewha-server-itargowoosung ghcr.io/itargowoosung/ewha-server:production
