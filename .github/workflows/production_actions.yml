@@ -26,7 +26,7 @@ jobs:
         with:
           registry: ghcr.io
           username: itargowoosung
-          password: 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
+          password: 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
 
       # push image to github pakage
       - name: push image
