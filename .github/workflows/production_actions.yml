@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # 소스를 가져오기
-      - name: checkout staging
+      - name: checkout production
         uses: actions/checkout@v2
         with:
           ref: "production"
