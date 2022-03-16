@@ -33,3 +33,13 @@ jobs:
         run: docker push ghcr.io/itargowoosung/ewha-server:production
 
       # pull & test & service
+       - name: pull & test & service
+         uses: appleboy/ssh-action@v0.1.1
+         with:
+             host: ${{ secrets.SERVER_HOST }}
+             username: ${{ secrets.SERVER_USERNAME }}
+             key: ${{ secrets.SERVER_PEM }}
+             script: >-
+               echo ${{ secrets.ACCESS_TOKEN }} | sudo docker login ghcr.io --username itargowoosung --password-stdin &&
+               sudo docker pull ghcr.io/itargowoosung/ewha-server:production &&
+               sudo docker run -d -p '8080':'8080' ghcr.io/itargowoosung/ewha-server:production
