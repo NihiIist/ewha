@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 소스를 가져오기
+      # checkout source
       - name: checkout production
         uses: actions/checkout@v2
         with:
