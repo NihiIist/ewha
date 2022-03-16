@@ -1,5 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
 
 
 def total(num1, num2):
@@ -7,7 +6,7 @@ def total(num1, num2):
 
 
 class SimpleServer(BaseHTTPRequestHandler):
-    def do_GET(self):  # pylint: disable=invalid-name
+    def do_GET(self):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
