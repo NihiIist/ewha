@@ -31,7 +31,7 @@ class SimpleServer(BaseHTTPRequestHandler):
         <meta charset="UTF-8">
         </head>
         <body>
-        <h1>실습용 서버입니다.</h1>
+        <h1>우성의 실습용 서버입니다.</h1>
         <p>5+10은 {total(5, 10)}입니다</p>
         </body></html>
         """,
