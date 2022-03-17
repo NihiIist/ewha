@@ -49,4 +49,4 @@ jobs:
             if [ $(sudo docker ps -aq --filter name=ewha-server-${{ secrets.USERNAME }} | wc -l) -gt 0 ]; then
               sudo docker rm -f $(docker ps -aq --filter name=ewha-server-${{ secrets.USERNAME }});
             fi &&
-            sudo docker run -d -p '8080':'8080' --name ewha-server-${{ secrets.USERNAME }} ghcr.io/${{ secrets.USERNAME }}/ewha-server:production
+            sudo docker run -d -p ${{ secrets.SERVER_PORT }}:'8080' --name ewha-server-${{ secrets.USERNAME }} ghcr.io/${{ secrets.USERNAME }}/ewha-server:production
