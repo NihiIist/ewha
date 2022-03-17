@@ -47,6 +47,6 @@ jobs:
             echo ${{ secrets.ACCESS_TOKEN }} | sudo docker login ghcr.io --username ${{ secrets.USERNAME }} --password-stdin &&
             sudo docker pull ghcr.io/${{ secrets.USERNAME }}/ewha-server:production &&
             if [ $(sudo docker ps -aq --filter name=ewha-server-${{ secrets.USERNAME }} | wc -l) -gt 0 ]; then
-              sudo docker rm $(docker ps -aq --filter name=ewha-server-${{ secrets.USERNAME }});
+              sudo docker rm -f $(docker ps -aq --filter name=ewha-server-${{ secrets.USERNAME }});
             fi &&
             sudo docker run -d -p '8080':'8080' --name ewha-server-${{ secrets.USERNAME }} ghcr.io/${{ secrets.USERNAME }}/ewha-server:production
